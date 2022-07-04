@@ -1,0 +1,211 @@
+extends layout 
+block content
+  .container-fluid(style='height: 80vh !important')
+    .row
+      .col-md-3.sidebar
+        h1.py-3.text-center.text-light 
+        nav.nav.flex-column
+          button.text-light.btn.active-btn(data-id='branch-one') Branch One Summary
+          button.text-light.btn(data-id='branch-two') Branch Two
+          button.text-light.btn(data-id='all-branches') All Branches
+          button.nav-link.text-light.btn(data-id='other-sum') Others Sales Summary
+          a.nav-link.text-light.btn.btn-warning(href='/logout') Log out
+      #branch-one.col.card.text-center.login-card
+        .card-header
+          h3 Branch One Report
+        .card-body
+          table.table.table-striped
+            thead.table-dark.text-light
+              tr
+                th(scope='col')
+                  span Products solds
+                th(scope='col') Total Amount Sold(Ugx)
+                th(scope='col') Cash Sales(Ugx)
+                th(scope='col') Credit Sales(Ugx)
+            tbody.table-group-divider
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+            tfoot.table-dark.text-light
+              tr
+                th(scope='row') TOTALS
+                td 25000000
+                td 10000000
+                td 17000000
+      #branch-two.col.card.text-center.login-card.d-none
+        .card-header
+          h3 Branch Two Report
+        .card-body
+          table.table
+            thead
+              tr
+                th(scope='col')
+                  span Products solds
+                th(scope='col') Total Amount Sold(Ugx)
+                th(scope='col') Cash Sales(Ugx)
+                th(scope='col') Credit Sales(Ugx)
+            tbody.table-group-divider
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+            tfoot.table-dark.text-light
+              tr
+                th(scope='row') TOTALS
+                td 25000000
+                td 10000000
+                td 17000000
+      #all-branches.col.card.text-center.login-card.d-none
+        .card-header
+          h3 All Branches Report
+        .card-body
+          table.table
+            thead
+              tr
+                th(scope='col')
+                  span Products solds
+                th(scope='col') Total Amount Sold(Ugx)
+                th(scope='col') Cash Sales(Ugx)
+                th(scope='col') Credit Sales(Ugx)
+            tbody.table-group-divider
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+            tfoot.table-dark.text-light
+              tr
+                th(scope='row') TOTALS
+                td 25000000
+                td 10000000
+                td 17000000
+      #other-sum.col.card.text-center.login-card.d-none
+        .card-header
+          h3 Other Reports
+        .card-body
+          table.table
+            thead
+              tr
+                th(scope='col')
+                  span Products solds
+                th(scope='col') Total Amount Sold(Ugx)
+                th(scope='col') Cash Sales(Ugx)
+                th(scope='col') Credit Sales(Ugx)
+            tbody.table-group-divider
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+              tr
+                th(scope='row') Beans
+                td 25000000
+                td 10000000
+                td 17000000
+            tfoot.table-dark.text-light
+              tr
+                th(scope='row') TOTALS
+                td 25000000
+                td 10000000
+                td 17000000
+  include ./footer
+  script(src='/js/bootstrap.min.js')
+  script(src='/script/totals.js')

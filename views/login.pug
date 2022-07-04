@@ -1,0 +1,20 @@
+extends layout 
+block content
+    .container.mt-5
+            .row
+              #login-wrapper.col-12.card.login
+                .card-header
+                  h3 Login Here
+                .card-body
+                  form#login.mt-3(action="/login" method="POST")
+                    .row.mb-3
+                      label.col-sm-12.col-form-label(for='inputEmail3') Email
+                      .col-sm-12
+                        input#inputEmail3.form-control(type='email' name='email')
+                    .row.mb-3
+                      label.col-sm-12.col-form-label(for='inputPassword3') Password
+                      .col-sm-12
+                        input#inputPassword3.form-control(type='password' name='password')
+                    button.btn.btn-primary(type='submit')
+                      | Login in
+    //- script(src='script/home.js' defer='' type='module')                      

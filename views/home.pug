@@ -1,0 +1,77 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title KGL | Home
+  link(rel='icon' type='image/x-icon' href='/images/favicon.ico')
+  link(rel='stylesheet' href='css/bootstrap/css/bootstrap.min.css')
+  link(rel='stylesheet' href='css/style.css')
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark(style='height: 10vh !important')
+  .container-fluid
+    a.navbar-brand(href='index.html')
+      img(src='./images/logo.PNG' alt='KGL logo')
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          a.nav-link.active(aria-current='page' href='#') Home
+          a.nav-link.text-light(href='/dashboard') My Account
+.container-fluid.px-0(style='height: 90vh !important')
+  .row
+    #carouselExampleIndicators.col-9.carousel.slide.position-relative(style='height: 90vh !important' data-bs-ride='carousel')
+      .carousel-indicators
+        button.active(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='0' aria-current='true' aria-label='Slide 1')
+        button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='1' aria-label='Slide 2')
+        button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='2' aria-label='Slide 3')
+        button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='3' aria-label='Slide 4')
+        button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='4' aria-label='Slide 5')
+        button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='5' aria-label='Slide 6')
+      .carousel-inner.position-absolute
+        .carousel-item.active
+          img.d-block.w-100(src='images/beans.jpg' alt='picture of bean seeds')
+        .carousel-item
+          img.d-block.w-100(src='images/corn.jpg' alt='picture of corn seeds')
+        .carousel-item
+          img.d-block.w-100(src='images/cowpeas.jpg' alt='picture of green peas')
+        .carousel-item
+          img.d-block.w-100(src='images/gnuts.jpg' alt='picture of groundnuts')
+        .carousel-item
+          img.d-block.w-100(src='images/maize1.jpeg' alt='picture of corn seeds')
+        .carousel-item
+          img.d-block.w-100(src='images/soya.jpg' alt='picture of soya beans')
+      button.carousel-control-prev(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='prev')
+        span.carousel-control-prev-icon(aria-hidden='true')
+        span.visually-hidden Previous
+      button.carousel-control-next(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='next')
+        span.carousel-control-next-icon(aria-hidden='true')
+        span.visually-hidden Next
+      // welcome
+      .welcome
+        p.welcome-heading
+          span Karibu
+          |   groceries Limited
+        p.welcome-sub
+          | Your Number #1 Cereal And Grain Store. Distributing trusted
+          | produce.
+    .col-3
+      .container.mt-5
+        .row
+          #login-wrapper.col-12.card.login
+            .card-header
+              h3 Login Here
+            .card-body
+              form#login.mt-3(action="/login" method="POST")
+                .row.mb-3
+                  label.col-sm-12.col-form-label(for='inputEmail3') Email
+                  .col-sm-12
+                    input#inputEmail3.form-control(type='email' name='email')
+                .row.mb-3
+                  label.col-sm-12.col-form-label(for='inputPassword3') Password
+                  .col-sm-12
+                    input#inputPassword3.form-control(type='password' name='password')
+                button.btn.btn-primary(type='submit')
+                  | Login in
+script(src='js/bootstrap.min.js')
+script(src='script/home.js')
