@@ -8,6 +8,7 @@ const router = express.Router();
 const Procurement = require("../models/ProcumentModel");
 const Cashsale = require("../models/CashsalesModel");
 const Creditsale = require("../models/CreditModel");
+const CreditModel = require("../models/CreditModel");
 
 //procurement post request to /procurement
 router.route("/procurement").post(async (req, res) => {
@@ -15,9 +16,7 @@ router.route("/procurement").post(async (req, res) => {
   const date = new Date(`${req.body.date} ${req.body.time}`).toISOString();
   console.log(date);
   let produTonnage;
-let user={
-  
-}
+  let user = {};
   try {
     const newProduce = new Procurement({
       produceName: req.body.producename,
@@ -32,7 +31,7 @@ let user={
       purchaseDate: date,
     });
     await newProduce.save();
-    res.render("dashboard", { msg: "posted successfully",user });
+    res.render("dashboard", { msg: "posted successfully", user });
   } catch (error) {
     res.render("dashboard", { error: "something went wrong" });
   }
@@ -65,10 +64,32 @@ router.route("/cashsale").post(async (req, res) => {
 });
 
 //credit sale post request to /sales/creditsale
-router.route("/creditsale").post((req, res) => {
+router.route("/creditsale").post(async (req, res) => {
   console.log(req.body);
+  try {
+    const newCreditClient = new CreditModel({
+      customerName: req.body.customer,
+      customerContact: req.body.phone,
+      nationalId: req.body.nin,
+      customerLocation: req.body.location,
+      produceName: req.body.producename,
+      produceType: req.body.producetype,
+      tonnage: req.body.tonnage,
+      amountPaid: req.body.amountpaid,
+      amountDue: req.body.amountdue,
+      branchName: req.body.branchname,
+      purchaseDate: req.body.purchasedate,
+      dueDate: req.body.duedate,
+      dispatchDate: req.body.dispatchdate,
+      sellingStaff: req.body.agent,
+    });
+    await newCreditClient.save();
 
-  res.render("success", { msg: "successful post" });
+    res.render("success", { msg: "successful post" });
+  } catch (error) {
+    console.log(error);
+    res.render("dashboard");
+  }
 });
 //GET one product
 

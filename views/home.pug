@@ -16,11 +16,12 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark(style='height: 10vh !important')
     #navbarSupportedContent.collapse.navbar-collapse
       ul.navbar-nav.me-auto.mb-2.mb-lg-0
         li.nav-item
-          a.nav-link.active(aria-current='page' href='#') Home
-          a.nav-link.text-light(href='/dashboard') My Account
+          
+      a.nav-link.text-light(href='/dashboard') My Account
 .container-fluid.px-0(style='height: 90vh !important')
   .row
     #carouselExampleIndicators.col-9.carousel.slide.position-relative(style='height: 90vh !important' data-bs-ride='carousel')
+      .overlay
       .carousel-indicators
         button.active(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='0' aria-current='true' aria-label='Slide 1')
         button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='1' aria-label='Slide 2')
@@ -55,6 +56,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark(style='height: 10vh !important')
         p.welcome-sub
           | Your Number #1 Cereal And Grain Store. Distributing trusted
           | produce.
+    
     .col-3
       .container.mt-5
         .row
@@ -73,5 +75,6 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark(style='height: 10vh !important')
                     input#inputPassword3.form-control(type='password' name='password')
                 button.btn.btn-primary(type='submit')
                   | Login in
+      
 script(src='js/bootstrap.min.js')
 script(src='script/home.js')

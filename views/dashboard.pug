@@ -9,23 +9,23 @@ block content
       .col.col-md-3.sidebar
       
         
-        h1.py-3.text-center.text-light.bg-warning #{user.name}
-        h3.text-center.text-light  #{user.branch}
+        h1.py-3.text-center.text-light #{user ? user.name : ''}
+        h3.text-center.text-light   #{user ? user.branch : ''}
         nav.nav.flex-column
-        if user.role =='manager' || user.role =='agent'
-          button.nav-link.text-light.btn.mb-3(data-id='cash')
-            | Record Cash Sale
-          button.nav-link.text-light.btn.mb-3(data-id='credit')
-            | Record Credit Sale
-        if user.role =='manager' 
-          button.nav-link.text-light.btn.mb-3.active-btn(data-id='procure')
-              | Record Received Stock
-          button.nav-link.text-light.btn.mb-3(data-id='notification')
-            | Notifications
-          button.nav-link.text-light.btn.mb-3(data-id='registerstaff')
-            | Create New Attendant
-        if user.role =='director'    
-          a#summary-btn.nav-link.text-light.btn.mb-3(href='/stats') View Sales Summary
+          if user.role =='manager' || user.role =='agent'
+            button.nav-link.text-light.btn.mb-3(data-id='cash')
+              | Record Cash Sale
+            button.nav-link.text-light.btn.mb-3(data-id='credit')
+              | Record Credit Sale
+          if user.role =='manager' 
+            button.nav-link.text-light.btn.mb-3.active-btn(data-id='procure')
+                | Record Received Stock
+            button.nav-link.text-light.btn.mb-3(data-id='notification')
+              | Notifications
+            button.nav-link.text-light.btn.mb-3(data-id='registerstaff')
+              | Create New Attendant
+          if user.role =='director'    
+            a#summary-btn.nav-link.text-light.btn.mb-3(href='/stats') Branch Sales Reports
           
       // PROCUREMENT INPUT DATA
       #procure.col.card.login-card.d-none
@@ -87,9 +87,9 @@ block content
               label.form-label(for='producename') Product Name
               select#producename.form-select(name='producename')
                 option(value='default') Choose product
-                //- if(products.length)
-                //-   each product in products
-                //-     option(value=product.produceName data-price=product.sellingPrice) #{product.produceName} - UGX  #{product.sellingPrice}
+                if(products.length)
+                  each product in products
+                    option(value=product.produceName data-price=product.sellingPrice) #{product.produceName} - UGX  #{product.sellingPrice}
 
             .col-md-6
               label.form-label(for='price') Price(Ugx)
@@ -102,14 +102,14 @@ block content
               input#bill-paid.form-control(type='number' name='amountpaid' readonly='true' required='')
             .col-md-6
               label.form-label(for='branch-name') Branch Name
-              input.form-control#branch-name(type='text' name='branch' readonly="true" value='')
+              input.form-control#branch-name(type='text' name='branch' readonly="true" value=user.branch)
                 
             .col-md-6
               label.form-label(for='buyer-name') Buyer&apos;s Name
               input#buyer-name.form-control(type='text' name='customername' required='')
             .col-md-6
               label.form-label(for='agent-name') Agent&apos;s Name
-              input#agent-name.form-control(type='text' name='agent' readonly='true' value='' required='')
+              input#agent-name.form-control(type='text' name='agent' readonly='true' value=user.name required='')
             .col-md-6
               label.form-label(for='contact') Buyer&apos;s Contact
               input#contact.form-control(type='tel' name='phone' required='')
@@ -142,19 +142,19 @@ block content
               input#contact.form-control(type='tel' name='phone' required='')
             .col-md-6
               label.form-label(for='produce-name') Product Name
-              //- select#branch-name.form-select(name='producename')
-              //-   option(value='default') Choose Produce
-              //-   if(products.length)
-              //-     each product in products
-              //-       option(value=product.produceName) #{product.produceName}
+              select#branch-name.form-select(name='producename')
+                option(value='default') Choose Produce
+                if(products.length)
+                  each product in products
+                    option(value=product.produceName) #{product.produceName}
                 
             .col-md-6
               label.form-label(for='produce-type') Product Type
               select#branch-name.form-select(name='producetype')
                 option(value='default') Choose Produce Type
-                //- if(products.length)
-                //-   each product in products
-                //-     option(value=product.produceType) #{product.produceType}
+                if(products.length)
+                  each product in products
+                    option(value=product.produceType) #{product.produceType}
                  
             .col-md-6
               label.form-label(for='tonnage') Tonnage(in kgs)
@@ -164,10 +164,10 @@ block content
               input#amount-paid.form-control(type='number' name='amountpaid' required='')
             .col-md-6
               label.form-label(for='amount-due') Amount Due(Ugx)
-              input#amount-due.form-control(type='number' name='dueamount' required='')
+              input#amount-due.form-control(type='number' name='amountdue' required='')
             .col-md-6
               label.form-label(for='branch-name') Branch Name
-              input#branch-name.form-control(type='text' name='branchname' readonly="true" value='' )
+              input#branch-name.form-control(type='text' name='branchname' readonly="true" value='branch-one' )
               
             .col-md-6
               label.form-label(for='date') Purchase Date
@@ -183,7 +183,7 @@ block content
               input#time.form-control(type='time' name='dispatchtime' required='')
             .col-md-6
               label.form-label(for='agent-name') Agent&apos;s Name
-              input#agent-name.form-control(type='text' name='agent' readonly="true" value='' required='')
+              input#agent-name.form-control(type='text' name='agent' readonly="true" value='okurut rogers' required='')
             .col-12
               button.btn.btn-primary(type='submit')
                 | Submit Record

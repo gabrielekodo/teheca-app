@@ -20,7 +20,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark(style='height: 10vh !important')
         li.nav-item
           //- a.nav-link.active(aria-current='page' href='/') Home
       
-            
+    if(user)        
       a.nav-link.text-light(href='/') Home
       a.nav-link.text-light.btn(href='/logout') Log out
       a.nav-link.text-light(href='/dashboard') My Account

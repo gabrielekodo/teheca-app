@@ -5,8 +5,18 @@ const router = express.Router();
 
 //GET REQUEST TO /
 router.route("/stats").get((req, res) => {
-  console.log(req.session.user);
+  try {
+    console.log(req.session.user);
+if(req.session.user.role ==='director'){
   res.render("totals", { title: "Stats", user: req.session.user });
+
+}
+else{
+  res.redirect('/dashboard')
+}
+  } catch (error) {
+    res.redirect('/')
+  }
 });
 
 //GET ALL EMPLOYEES

@@ -3,10 +3,7 @@ body {
   min-height: 100vh !important;
   background-color: rgba(242, 229, 242, 0.267);
   position: relative;
-  background-image: url("../images/bg.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+
   overflow-x: hidden;
   font-family: "Poppins", sans-serif !important;
   /* -webkit-clip-path: polygon(25% 0, 100% 0, 100% 40%, 75% 100%, 0 100%, 0 60%);
@@ -56,6 +53,7 @@ a {
   height: 16rem;
   padding: 1rem;
   position: absolute;
+  z-index: 1000;
   background-color: rgba(240, 220, 220, 0.4);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
@@ -247,37 +245,31 @@ select:focus {
   background-color: #0e0d0d61;
 }
 
-.col .card {
-  margin: 0.6rem 0.5rem;
-  border: 2.5px solid #bfc1c2;
-  box-shadow: -6px 5px 10.5px #1a1c1e;
-
-  
+.card {
+  padding: 0 !important;
+  margin: 0.3rem 0.1rem;
+  border: 1.5px solid #bfc1c2;
+  /* box-shadow: -6px 5px 7.5px #1a1c1e; */
 }
 table {
   margin: 1rem 0.3rem;
 }
 
-
-
 .sidebar {
-  /* width: 425px; */
-   padding-left: 0;
+  padding-left: 0;
   padding-right: 0;
-  background-color: #111;
+  background-color: rgba(33, 37, 41, 1);
 }
 
 .flex-column a,
 .btn {
   text-align: left;
   margin: 0.6rem 0 0 0;
-
- 
 }
 
 .flex-column a:hover,
 .btn:hover {
-  border-bottom: 2px solid #1d73c9;
+  border: 2px solid #1d73c9;
 }
 
 .active-btn {
@@ -299,4 +291,18 @@ table {
 .error p {
   text-align: center;
   margin-top: 10px;
+}
+
+.overlay {
+  position: absolute;
+  background-color: #111;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  opacity: 0.5;
+}
+
+.card-header {
+  background-color: rgba(33, 37, 41, 1);
+  color: #f4f4f4;
 }
