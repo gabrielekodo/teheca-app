@@ -17,8 +17,10 @@ const CreditsalesSchema = new mongoose.Schema({
     type: String,
     required: [true, "Customer location is required"],
   },
-  produceName: {
-    type: String,
+  product: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Product",
+
     required: [true, "Produce name is required"],
   },
   produceType: {
@@ -37,7 +39,7 @@ const CreditsalesSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Amount remaining is required"],
   },
-  branchName: {
+  branch: {
     type: String,
     required: [true, "Branch is required"],
   },
@@ -53,10 +55,21 @@ const CreditsalesSchema = new mongoose.Schema({
     type: Date,
     required: [true, "Purchase date is required"],
   },
-  sellingStaff: {
-    type: String,
+  agent: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Employee",
     required: [true, "agent's name is required"],
   },
+});
+
+CreditsalesSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "agent",
+    select: "name branch",
+  }).populate({
+    path: "product",
+  });
+  next();
 });
 
 module.exports = mongoose.model("Creditsale", CreditsalesSchema);

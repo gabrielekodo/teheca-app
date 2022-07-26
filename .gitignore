@@ -1,4 +1,4 @@
 node_modules
 config/config.env
 
-objects.js
+karibu_client/node_modules

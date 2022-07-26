@@ -22,9 +22,11 @@ const EmployeeSchema = new mongoose.Schema({
     required: [true, "Employee phone number is required"],
     minlength: 10,
     maxlength: 13,
+    unique: true,
   },
   employeeID: {
     type: String,
+    unique: true,
     required: [true, "Employee ID is required"],
     minlength: 6,
     maxlength: 8,
@@ -32,15 +34,17 @@ const EmployeeSchema = new mongoose.Schema({
   role: {
     type: String,
     required: true,
-    unique: true,
-    enum: ["director", "manager", "agent"],
+    enum: {
+      values: ["director", "manager", "agent"],
+      message: "Enter right roles of director, manager or agent",
+    },
   },
 
   branch: {
     type: String,
     required: [true, "Branch name is required"],
-    unique: true,
   },
+  
 });
 
 // Export Model

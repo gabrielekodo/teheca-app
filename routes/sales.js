@@ -5,96 +5,121 @@ const mongoose = require("mongoose");
 const router = express.Router();
 
 //require model
+const Product = require("../models/Product");
 const Procurement = require("../models/ProcumentModel");
 const Cashsale = require("../models/CashsalesModel");
 const Creditsale = require("../models/CreditModel");
 const CreditModel = require("../models/CreditModel");
 
-//procurement post request to /procurement
-router.route("/procurement").post(async (req, res) => {
-  console.log(req.body);
-  const date = new Date(`${req.body.date} ${req.body.time}`).toISOString();
-  console.log(date);
-  let produTonnage;
-  let user = {};
+//get All Products request to GET/products
+
+router.get("/products", async (req, res) => {
   try {
-    const newProduce = new Procurement({
-      produceName: req.body.producename,
-      produceType: req.body.producetype,
-      produceSource: req.body.producesource,
-      tonnage: Number(req.body.tonnage),
-      costPrice: Number(req.body.cost),
-      sellingPrice: Number(req.body.sellingprice),
-      supplierName: req.body.dealer,
-      supplierContact: req.body.phone,
-      branchStocked: req.body.branch,
-      purchaseDate: date,
+    let products = await Product.find();
+    res.status(200).json({
+      status: "ok",
+      results:products.length,
+      data: products,
     });
-    await newProduce.save();
-    res.render("dashboard", { msg: "posted successfully", user });
   } catch (error) {
-    res.render("dashboard", { error: "something went wrong" });
+    res.status(500).json({
+      status: "fail",
+      message: "Something went wrong",
+    });
   }
 });
 
-//GET all products
-
-//cash sale post request to /sales/cashsale
-router.route("/cashsale").post(async (req, res) => {
-  console.log(req.body);
+//get one Products request to GET/products/id
+router.get("/products/:id", async (req, res) => {
   try {
-    const date = new Date(`${req.body.date} ${req.body.time}`).toISOString();
-    const newCashSale = new Cashsale({
-      produceName: req.body.producename,
-      tonnage: req.body.tonnage,
-      amountPaid: req.body.amountpaid,
-      branchName: req.body.branch,
-      customerName: req.body.customername,
-      agentName: req.body.agent,
-      customerContact: req.body.phone,
-      purchaseDate: req.body.date,
-    });
+    let product = await Product.findOne({ _id: req.params.id });
+    // console.log(product)
+    if (!product) {
+      res.status(400).json({
+        status: "fail",
+        message: "no such product",
+      });
+      
+    }
+    else{
+      res.status(200).json({
+        status: "ok",
+        data: product,
+      });
 
-    await newCashSale.save();
+    }
 
-    res.render("receipt", { title: "Receipt", msg: "Successful purchase" });
   } catch (error) {
-    res.send("something went wrong");
+    res.status(500).json({
+      status: "fail",
+      message: "Something went wrong",
+    });
   }
 });
 
-//credit sale post request to /sales/creditsale
-router.route("/creditsale").post(async (req, res) => {
-  console.log(req.body);
+//Add product POST /products
+router.post("/products", async (req, res) => {
   try {
-    const newCreditClient = new CreditModel({
-      customerName: req.body.customer,
-      customerContact: req.body.phone,
-      nationalId: req.body.nin,
-      customerLocation: req.body.location,
-      produceName: req.body.producename,
-      produceType: req.body.producetype,
-      tonnage: req.body.tonnage,
-      amountPaid: req.body.amountpaid,
-      amountDue: req.body.amountdue,
-      branchName: req.body.branchname,
-      purchaseDate: req.body.purchasedate,
-      dueDate: req.body.duedate,
-      dispatchDate: req.body.dispatchdate,
-      sellingStaff: req.body.agent,
-    });
-    await newCreditClient.save();
+    let newProduct = await Product.create(req.body);
 
-    res.render("success", { msg: "successful post" });
+    res.status(200).json({
+      status: "ok",
+      data: newProduct,
+    });
   } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: "Something went wrong",
+    });
     console.log(error);
-    res.render("dashboard");
   }
 });
-//GET one product
 
-//UPDATE PRODUCT
+//update product PUT /products/id
+router.put("/products/:id", async (req, res) => {
+  try {
+    let id = req.params.id;
+    updatedProduct = await Product.findByIdAndUpdate(id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!updatedProduct) {
+      res.status(400).json({
+        status: "fail",
+        message: "No product with that id",
+      });
+      return;
+    }
+
+    res.status(200).json({
+      status: "ok",
+      data: updatedProduct,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: "Something went wrong",
+    });
+  }
+});
 
 //DELETE PRODUCT
+router.delete("/products/:id", async (req, res) => {
+  try {
+    let id = req.params.id;
+    await Product.findByIdAndDelete(id);
+
+    res.status(204).json({
+      status: "ok",
+      data: null,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: "Something went wrong",
+    });
+  }
+});
+
 
 module.exports = router;

@@ -1,7 +1,13 @@
 const mongoose = require("mongoose");
 
 const ProcurementSchema = new mongoose.Schema({
-  produceName: {
+  produce: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Product",
+    required: [true, "product name is required"],
+  },
+
+  produceSource: {
     type: String,
     required: true,
   },
@@ -9,21 +15,11 @@ const ProcurementSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  produceSource: {
-    type: String,
-    required: true,
-  },
   tonnage: {
     type: Number,
     required: true,
-    
   },
-  threshold: {
-    type: Number,
-    required: true,
-    default:100
-    
-  },
+
   purchaseDate: {
     type: Date,
     required: true,
@@ -40,7 +36,7 @@ const ProcurementSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  branchStocked: {
+  branch: {
     type: String,
     required: true,
   },
@@ -50,8 +46,17 @@ const ProcurementSchema = new mongoose.Schema({
   },
 });
 
+ProcurementSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "produce",
+    // select: "name branch",
+  });
 
-
-
+  next();
+});
+// .populate({
+//     path: "productName",
+//     // select: 'name'
+//   });
 
 module.exports = mongoose.model("Procurement", ProcurementSchema);

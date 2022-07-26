@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "server": "nodemon app.js --ignore 'karibu_client/'",
+    "client": "npm run serve --prefix karibu_client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [
     "kgl",
@@ -18,10 +20,13 @@
   "author": "gabriel ekodo",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.1.3",
     "connect-ensure-login": "^0.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.6",
     "morgan": "^1.10.0",
     "passport": "^0.6.0",
@@ -29,6 +34,7 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
+    "concurrently": "^7.2.2",
     "nodemon": "^2.0.16"
   }
 }
