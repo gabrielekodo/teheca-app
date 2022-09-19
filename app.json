@@ -1,1 +1,4 @@
-{}
+{
+   "repository": "https://github.com/gabrielekodo/karibu-project",
+"image": "heroku/nodejs"
+}
