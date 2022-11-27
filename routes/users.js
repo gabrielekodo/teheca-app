@@ -1,34 +1,24 @@
 const express = require("express");
+const { verifyToken } = require("../controllers/auth");
+const {
+  register,
+  findAll,
+  findOne,
+  update,
+  deleteOne,
+  deleteAll,
+  findAllUsers,
+} = require("../controllers/user.controller");
 
-const Employee = require("../models/EmployeeModel");
 const router = express.Router();
 
-//GET REQUEST TO /
-router.route("/stats").get((req, res) => {
-  try {
-    console.log(req.session.user);
-if(req.session.user.role ==='director'){
-  res.render("totals", { title: "Stats", user: req.session.user });
+router.post("/", register);
+router.get("/?", findAll);
+router.get("/", findAllUsers);
+router.get("/:id", findOne);
+router.put("/:id", update);
 
-}
-else{
-  res.redirect('/dashboard')
-}
-  } catch (error) {
-    res.redirect('/')
-  }
-});
-
-
-
-//GET REQUEST TO /createUser
-router.route("/createUser").get((req, res) => {
-  res.render("createEmployee", { title: "Create Employee" });
-});
-
-
-
-
-
+router.delete("/:id", verifyToken, deleteOne);
+router.delete("/", deleteAll);
 
 module.exports = router;
