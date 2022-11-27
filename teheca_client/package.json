@@ -1,5 +1,5 @@
 {
-  "name": "karibu_client",
+  "name": "teheca_client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -43,5 +43,9 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+   "engines": {
+      "node": "18.12.1",
+      "npm": "8.19.2"
+    }
 }
