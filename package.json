@@ -8,6 +8,7 @@
     "server": "nodemon app.js --ignore 'teheca_client/'",
     "client": "npm run serve --prefix teheca_client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build":"npm install --prefix teheca_client && npm run build --prefix teheca_client",
     "db:create": "sequelize-cli db:create",
     "db:migrate": "sequelize-cli db:migrate",
     "db:g:migration": "sequelize-cli migration:generate --name",

@@ -39,7 +39,15 @@ const expressSession = require("express-session")({
 //express middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "teheca_client/dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(
+      path.resolve(__dirname, "teheca_client", "dist", "index.html")
+    );
+  });
+}
 app.use(expressSession);
 app.use(cors());
 app.use(morgan("dev"));
@@ -49,7 +57,6 @@ app.use("/api/auth", authRoutes);
 
 app.use("/api/users", usersRoutes);
 app.use("/api/applicants", applicationsRoutes);
-
 
 // handling non existing routes
 app.get("*", (req, res) => {
