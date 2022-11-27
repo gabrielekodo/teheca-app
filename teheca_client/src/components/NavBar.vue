@@ -12,7 +12,7 @@
           class="d-inline-block align-text-top logo"
       /></a>
 
-      <div v-if="setUser" class="d-flex float-end" id="navbarSupportedContent">
+      <div  class="d-flex float-end" id="navbarSupportedContent">
         <a href="/profile" class="mx-auto py-3 px-3">Profile</a>
         <button class="btn btn-warning" @click="logout">Log out</button>
       </div>
@@ -25,7 +25,7 @@ export default {
   components: {},
   data() {
     return {
-      user: null,
+      
     };
   },
   computed:{
