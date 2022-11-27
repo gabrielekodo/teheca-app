@@ -6,7 +6,7 @@ const morgan = require("morgan");
 const path = require("path");
 
 const db = require("./models");
-require("dotenv").config({ path: "./config/config.env" });
+require("dotenv").config();
 const passport = require("passport");
 
 //sync Database
@@ -40,14 +40,7 @@ const expressSession = require("express-session")({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "teheca_client/dist")));
-  app.get("*", (req, res) => {
-    res.sendFile(
-      path.resolve(__dirname, "teheca_client", "dist", "index.html")
-    );
-  });
-}
+
 app.use(expressSession);
 app.use(cors());
 app.use(morgan("dev"));

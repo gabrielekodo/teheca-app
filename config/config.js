@@ -1,8 +1,8 @@
 require("dotenv").config();
-const { DB_HOST, DB_USERNAME, DB_PASSWORD } = process.env;
+const { DB_HOST, DB_USERNAME, DB_PASSWORD, DATABASE_URL } = process.env;
 
 module.exports = {
-  development: {
+  production: {
     username: DB_USERNAME,
     password: DB_PASSWORD,
     database: "d35q7k0m177qke",
@@ -14,7 +14,7 @@ module.exports = {
         rejectUnauthorized: false, // This line will fix new error
       },
     },
-    url: process.env.DATABASE_URL,
+    url: DATABASE_URL,
   },
   test: {
     username: DB_USERNAME,
@@ -23,7 +23,7 @@ module.exports = {
     host: DB_HOST,
     dialect: "postgres",
   },
-  production: {
+  development: {
     username: DB_USERNAME,
     password: DB_PASSWORD,
     database: "sequelize_database_production",
